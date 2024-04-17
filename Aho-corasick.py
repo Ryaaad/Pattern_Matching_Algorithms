@@ -62,22 +62,28 @@ def createFailurLinks(root):
             child.fail =findLongestPrefixInRootForNode(root,child.output[1:len(child.output)])
     return root
 def ahoCorasick(text, root):
+    nbrComaparaison = 0
     node = root
     occurences = []
     for i in range(len(text)):
+        if(i != 0 and node is root):
+            nbrComaparaison = nbrComaparaison + 1
         char = text[i]
         while char not in node.children and node is not root:
             node = node.fail
+            nbrComaparaison=nbrComaparaison + 1
         if char in node.children:
             node = node.children[char]
+            nbrComaparaison=nbrComaparaison + 1
         if node.finished:
             occurences.append(i-len(node.output)+1)
             print(node.output)
-    return occurences
-root = initializeTri(["tatt","at","tt"])
+    return occurences,nbrComaparaison
+root = initializeTri(["aya","zeby","abc","ad","de"])
 root = createFailurLinks(root)
-text = "atgtt"
+text = "ayoayazobybcdaedade"
 # print(root.children["t"].children["t"].fail)
 # root =root.children["t"].children["t"].fail
-ahoCorasick(text, root)
+occurences = ahoCorasick(text, root)
+print(occurences)
 # print(root.output)
