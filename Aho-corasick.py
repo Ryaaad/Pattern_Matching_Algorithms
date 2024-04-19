@@ -79,9 +79,9 @@ def ahoCorasick(text, root):
             occurences.append(i-len(node.output)+1)
             print(node.output)
     return occurences,nbrComaparaison
-root = initializeTri(["aya","zeby","abc","ad","de"])
+root = initializeTri(["bya","ze","by","a","ya","y","d","abc","ad","de","e"])
 root = createFailurLinks(root)
-text = "ayoayazobybcdaedade"
+text = "bybyazobybcdbdbdedd"
 # print(root.children["t"].children["t"].fail)
 # root =root.children["t"].children["t"].fail
 occurences = ahoCorasick(text, root)
