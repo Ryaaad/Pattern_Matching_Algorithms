@@ -4,7 +4,7 @@ def hachage_Base_10(motif):
   coef=1
   i=m-1
   while i>=0 :
-     hached=hached+ ord(motif[i])*coef
+     hached=hached+ ord(motif[i])
      coef=coef*10
      i=i-1
 
@@ -26,17 +26,6 @@ def tester(text,index,motif):
       if text[index+i]!=motif[i]:
          return False
    return True  
-
-motifs=[
-   "aaaa",
-   "acbb",
-   "adbb",
-   "tybb",
-   "aabb",
-   "arbb",
-   "zbbb",
-]
-hashedmotifs=hashed_motifs(motifs)
 
 def Rabin_Karp(text,hashedmotifs):
     n=len(text) ; k=len(hashedmotifs)
@@ -62,6 +51,19 @@ def Rabin_Karp(text,hashedmotifs):
     return occ  , faux_vrai , nbr_combarison
 
 
+motifs=[
+   "aa",
+   "ar",
+   "a-",
+   "tb",
+   "ab",
+   "ac",
+   "zb",
+]
+hashedmotifs=hashed_motifs(motifs)
+text="aaaarabaaaaacbbdbarzbbcvkbc"
 
-occ,faux_vrai,nbr_combarison=Rabin_Karp("aaaabaaaaacbbdbarzbbbc",hashedmotifs)
+
+
+occ,faux_vrai,nbr_combarison=Rabin_Karp(text,hashedmotifs)
 print(occ,faux_vrai,nbr_combarison)  

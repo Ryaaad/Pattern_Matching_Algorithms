@@ -1,4 +1,4 @@
-import timeit
+import time
 
 # Fonction qui crée la table d (table d du motif)
 def dTable(motif):
@@ -22,7 +22,7 @@ def BoyerMoore(motif, text, d):
     occ = [] # variable avec les index des occurrences
     nbr_comp = 0 # variable pour calculer le nombre de comparaisons
     while(i < n - m + 1):
-        k = 0 # variable qui vas indiquer la quantité de décalage
+        k = 0 # variable qui vas indiquer nbr de décalage
         j = m - 1
         while j >= 0:
             nbr_comp += 1 # à chaque fois que nous entrons dans cette boucle, il y aura une comparaison
@@ -38,19 +38,22 @@ def BoyerMoore(motif, text, d):
             i = i + k 
     return occ, nbr_comp
 
-motif = "oui"
+motif = "test"
 d = dTable(motif) 
-text = "no_no_n__"
+text = "le test motif est un motif test qui test le test motif qui lui meme test le motif test "
 n = len(text) 
 m = len(motif)
-
+debutTemps=time.time()
 occurrences, nbr_comp = BoyerMoore(motif, text, d)
+TempsFin=time.time()
+Temps=TempsFin - debutTemps  # pour calculer temps d’exécution
 
 print(f"---------------------------------------")
 print(f"Motif : {motif} ")
 print(f"Text : {text} ")
 print(f"Table des occurrences : {occurrences} ")
 print(f"Nombre de combarison : {nbr_comp}")
+print(f"Temps d'execuson: {Temps * 1000000 } microseconds ")
 print(f"---------------------------------------")
 
 
