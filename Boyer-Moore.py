@@ -38,9 +38,9 @@ def BoyerMoore(motif, text, d):
             i = i + k 
     return occ, nbr_comp
 
-motif = "test"
+motif = "accc"
 d = dTable(motif) 
-text = "le test motif est un motif test qui test le test motif qui lui meme test le motif test "
+text="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
 n = len(text) 
 m = len(motif)
 debutTemps=time.time()

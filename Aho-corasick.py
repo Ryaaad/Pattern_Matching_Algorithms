@@ -1,13 +1,15 @@
+import time
+
 class TrieNode(object):    
     def __init__(self, char: str):
         self.char = char
         self.finished = False
-        self.children= {} # J'ai utilisé un dictionnaire ici pour faciliter l'accès.
+        self.children= {} # J'ai utilisé un dictionnaire ici pour faciliter l'acces.
         self.output = [] # J'ai ajouté 'output' qui va contenir le mot courant. 
         self.fail = None
         
 
-       # La fonction pour ajouter un mot dans le tri. À chaque ajout, le mot courant est ajouté à l'attribut 'output'.
+       # La fonction pour ajouter un mot dans le tri. À chaque ajout, le mot courant est ajoute a l'attribut 'output'.
 def addText(root, string):
 
     node = root
@@ -20,7 +22,7 @@ def addText(root, string):
     node.output=string
     node.finished = True
 
-# Cette fonction sert à initialiser mon trie avec '/' (équivalent à root (epsilon)) apr ajouter les motifs
+# Cette fonction sert a initialiser mon trie avec '/' (equivalent a root (epsilon)) apr ajouter les motifs
 def initializeTri(strings):
     root = TrieNode('/')
     for string in strings:
@@ -79,9 +81,19 @@ def ahoCorasick(text, root):
 
     return occurrences, nbrComparison
 
-
-root = initializeTri(["bya","ze","rby","y"])
+motifs=["ze","rby","y"]
+root = initializeTri(motifs)
 root = createFailureLinks(root)
 text = "bybobybcdbdbdeddd"
-occurences = ahoCorasick(text, root)
-print(occurences)
+debutTemps=time.time()
+occurences,nbrComparison = ahoCorasick(text, root)
+TempsFin=time.time()
+Temps=TempsFin - debutTemps  # pour calculer temps d’exécution
+
+print(f"---------------------------------------")
+print(f"Motifs : {motifs} ")
+print(f"Text : {text} ")
+print(f"Table des occurrences : {occurences} ")
+print(f"Nombre de combarison : {nbrComparison}")
+print(f"Temps d'execuson: {Temps * 1000000 } microseconds ")
+print(f"---------------------------------------")
