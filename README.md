@@ -5,7 +5,8 @@
 ### Boyer-Moore:
 **Principle:** We start by comparing the last index (j) of the pattern with the index i + j of the text. If these two elements are equal, we step back one position by comparing index (j - 1) of the pattern with i + (j - 1) of the text. We repeat this process until we reach a difference or index 0 of the pattern. If these elements are equal, we have found an occurrence of the pattern; otherwise, we calculate how far we should move using Boyer-Moore to calculate the shift in case of failure, using a dictionary table that contains all the last occurrences of all characters at each index.
 
-**Example** : motif = "abbcab" text="abcfvabbcablmùdxeggse"
+**Example** : motif = "abbcab" text="abcfvabbcablmùdxeggse".
+
 step 1 : creating the dictionary table (let's name it d): 
 | index | dictionary            |
 |-------|-----------------------|
@@ -17,51 +18,52 @@ step 1 : creating the dictionary table (let's name it d):
 | 5     | {"a":4,"b":2,"c":3}   |
 
 step 2 : search : 
-abcfvabbcablmùdxeggse        i=0
-abbcab                       j=5
 
-text[i+j]!=motif[j] so we calculate shift we have d[5]["a"]=4 so i=1
+abcfvabbcablmùdxeggse        i=0.
+abbcab                       j=5.
 
-abcfvabbcablmùdxeggse        i=1
- abbcab                      j=5
-text[i+j]==motif[j]
+text[i+j]!=motif[j] so we calculate shift we have d[5]["a"]=4 so i=1.
 
-abcfvabbcablmùdxeggse        i=1
- abbcab                      j=4
+abcfvabbcablmùdxeggse        i=1.
+ abbcab                      j=5.
+text[i+j]==motif[j].
+
+abcfvabbcablmùdxeggse        i=1.
+ abbcab                      j=4.
  
-text[i+j]==motif[j]
+text[i+j]==motif[j].
 
-abcfvabbcablmùdxeggse        i=1
- abbcab                      j=3
+abcfvabbcablmùdxeggse        i=1.
+ abbcab                      j=3.
  
-text[i+j]!=motif[j] so we calculate shift we have d[3]["v"] dont exist so i=5
-abcfvabbcablmùdxeggse        i=5
-     abbcab                  j=5
+text[i+j]!=motif[j] so we calculate shift we have d[3]["v"] dont exist so i=5.
+abcfvabbcablmùdxeggse        i=5.
+     abbcab                  j=5.
 text[i+j]==motif[j] so j=j-1
 
- abcfvabbcablmùdxeggse       i=5
-      abbcab                 j=4
+ abcfvabbcablmùdxeggse       i=5.
+      abbcab                 j=4.
+      
+text[i+j]==motif[j] so j=j-1.
+
+ abcfvabbcablmùdxeggse       i=5.
+      abbcab                 j=3.
       
 text[i+j]==motif[j] so j=j-1
 
- abcfvabbcablmùdxeggse       i=5
-      abbcab                 j=3
-      
-text[i+j]==motif[j] so j=j-1
+ abcfvabbcablmùdxeggse       i=5.
+      abbcab                 j=2.
 
- abcfvabbcablmùdxeggse       i=5
-      abbcab                 j=2
+text[i+j]==motif[j] so j=j-1.
 
-text[i+j]==motif[j] so j=j-1
+ abcfvabbcablmùdxeggse       i=5.
+      abbcab                 j=1.
+text[i+j]==motif[j] so j=j-1.
 
- abcfvabbcablmùdxeggse       i=5
-      abbcab                 j=1
-text[i+j]==motif[j] so j=j-1
+ abcfvabbcablmùdxeggse       i=5.
+      abbcab                 j=0.
 
- abcfvabbcablmùdxeggse       i=5
-      abbcab                 j=0
-
-we found the motif !
+we found the motif !.
     
 ## Multiple Pattern Matching
 
